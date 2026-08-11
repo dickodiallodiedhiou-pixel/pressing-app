@@ -29,4 +29,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // Ajoute la relation vers les tickets
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'client_id');
+    }
 }

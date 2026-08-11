@@ -1,25 +1,50 @@
 <?php
-
 namespace Database\Seeders;
-
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Compte Gestionnaire (Créé en base, pas d'auto-inscription)
+        User::create([
+            'name' => 'Gestionnaire Pressing',
+            'email' => 'admin@pressing.com',
+            'password' => Hash::make('password123'),
+            'role' => 'gestionnaire',
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Compte Client exemple
+        User::create([
+            'name' => 'Jean Dupont',
+            'email' => 'client@gmail.com',
+            'password' => Hash::make('password123'),
+            'role' => 'client',
+        ]);
+
+        // Services de départ
+        Service::create([
+            'libelle' => 'Lavage',
+            'prix_unitaire' => 1500,
+            'description' => 'Lavage au kilo pour vêtements ordinaires',
+            'is_active' => true,
+        ]);
+
+        Service::create([
+            'libelle' => 'Repassage',
+            'prix_unitaire' => 500,
+            'description' => 'Repassage à l\'unité (chemises, pantalons)',
+            'is_active' => true,
+        ]);
+
+        Service::create([
+            'libelle' => 'Nettoyage à sec',
+            'prix_unitaire' => 3000,
+            'description' => 'Nettoyage délicat pour costumes et vestes',
+            'is_active' => true,
         ]);
     }
 }
