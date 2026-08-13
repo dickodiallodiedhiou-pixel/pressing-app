@@ -1,0 +1,37 @@
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+  <h2>Créer un compte - Pressing LIC</h2>
+  
+  <div *ngIf="errorMessage" style="color: red; margin-bottom: 10px;">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div style="margin-bottom: 15px;">
+      <label>Nom complet :</label><br>
+      <input type="text" [(ngModel)]="userData.name" name="name" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Email :</label><br>
+      <input type="email" [(ngModel)]="userData.email" name="email" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Mot de passe :</label><br>
+      <input type="password" [(ngModel)]="userData.password" name="password" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Confirmer le mot de passe :</label><br>
+      <input type="password" [(ngModel)]="userData.password_confirmation" name="password_confirmation" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      S'inscrire
+    </button>
+  </form>
+
+  <p style="margin-top: 15px; text-align: center;">
+    Déjà inscrit ? <a routerLink="/login">Se connecter</a>
+  </p>
+</div>

@@ -1,0 +1,50 @@
+<div style="padding: 20px; max-width: 1000px; margin: auto;">
+  <h2>Catalogue des Services de Pressing</h2>
+
+  <div *ngIf="successMessage" style="background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="errorMessage" style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+    {{ errorMessage }}
+  </div>
+
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <!-- Liste des prestations -->
+    <div style="flex: 2; min-width: 300px;">
+      <h3>Nos Prestations</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+        <div *ngFor="let service of services" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center;">
+          <h4>{{ service.libelle }}</h4>
+          <p style="font-weight: bold; color: #007bff;">{{ service.prix }} FCFA</p>
+          <button (click)="addToCart(service)" style="background-color: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panier de commande -->
+    <div style="flex: 1; min-width: 250px; border: 1px solid #ccc; padding: 15px; border-radius: 8px; height: fit-content;">
+      <h3>Mon Panier</h3>
+      <div *ngIf="cart.length === 0">Votre panier est vide.</div>
+
+      <ul style="list-style: none; padding: 0;">
+        <li *ngFor="let item of cart; let i = index" style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+          <div>
+            <strong>{{ item.libelle }}</strong><br>
+            <small>{{ item.quantite }} x {{ item.prix }} FCFA</small>
+          </div>
+          <button (click)="removeFromCart(i)" style="background: red; color: white; border: none; padding: 2px 6px; border-radius: 3px; cursor: pointer;">X</button>
+        </li>
+      </ul>
+
+      <hr *ngIf="cart.length > 0">
+      <p *ngIf="cart.length > 0"><strong>Total : {{ getTotal() }} FCFA</strong></p>
+
+      <button *ngIf="cart.length > 0" (click)="submitTicket()" style="width: 100%; background: #007bff; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">
+        Confirmer le ticket
+      </button>
+    </div>
+  </div>
+</div>

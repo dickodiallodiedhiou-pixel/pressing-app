@@ -4,6 +4,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "rootDir": "src",
     "types": [
       "vitest/globals"
     ]
@@ -11,5 +12,5 @@
   "include": [
     "src/**/*.d.ts",
     "src/**/*.spec.ts"
-  ]
+, "src/app/pages/login/login.spec.ts", "src/app/pages/register/register.spec.ts", "src/app/pages/client/catalog/catalog.spec.ts", "src/app/services/ticket.spec.ts"  ]
 }
